@@ -1,0 +1,100 @@
+{
+  "name": "@jeftelabs/exception",
+  "description": "Utility to create custom exceptions",
+  "version": "1.0.0",
+  "type": "module",
+  "files": [
+    "build",
+    "!build/bin",
+    "!build/tests"
+  ],
+  "main": "build/index.js",
+  "exports": {
+    ".": "./build/index.js"
+  },
+  "scripts": {
+    "pretest": "npm run lint",
+    "test": "c8 npm run quick:test",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "precompile": "npm run lint",
+    "compile": "tsdown && tsc --emitDeclarationOnly --declaration",
+    "build": "npm run compile",
+    "version": "npm run build",
+    "prepublishOnly": "npm run build",
+    "quick:test": "node --import=@jeftelabs/exec --enable-source-maps bin/test.ts",
+    "prepare": "husky",
+    "commitlint": "commitlint --edit",
+    "commit": "cz"
+  },
+  "devDependencies": {
+    "@arapucajs/eslint-config": "^1.1.2",
+    "@arapucajs/prettier": "^1.1.1",
+    "@arapucajs/tsconfig": "^1.0.0",
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
+    "@t8ngs/expect": "^1.0.0",
+    "@t8ngs/expect-type": "^1.1.0",
+    "@t8ngs/runner": "^1.0.0",
+    "@jeftelabs/exec": "^1.0.1",
+    "@types/node": "^25.0.1",
+    "c8": "^10.1.3",
+    "commitizen": "^4.3.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^9.1.7",
+    "eslint": "^9.39.1",
+    "prettier": "^3.7.4",
+    "tsdown": "^0.17.3",
+    "typescript": "^5.9.3"
+  },
+  "homepage": "https://github.com/jeftelabs/exception#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeftelabs/exception.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jeftelabs/exception/issues"
+  },
+  "keywords": [],
+  "author": "Jefte Costa <jefteamorim@gmail.com>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "tsdown": {
+    "entry": [
+      "index.ts"
+    ],
+    "outDir": "./build",
+    "clean": true,
+    "format": "esm",
+    "minify": "dce-only",
+    "fixedExtension": false,
+    "dts": false,
+    "treeshake": false,
+    "sourcemaps": false,
+    "target": "esnext"
+  },
+  "c8": {
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "tests/**"
+    ]
+  },
+  "prettier": "@arapucajs/prettier",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
+    }
+  }
+}
