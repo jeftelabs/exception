@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/jeftelabs/exception/compare/v1.0.0...v1.0.1) (2026-10-20)
+
+
+### Bug Fixes
+
+* **lock:** corrigindo package lock ([c515faf](https://github.com/jeftelabs/exception/commit/c515faf44ed0709d985b038dc9e085c4837e41ad))
+
 ## 1.0.0 (2026-10-18)
 
 
